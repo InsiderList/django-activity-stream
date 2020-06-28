@@ -115,6 +115,7 @@ def action_handler(verb, **kwargs):
         verb = verb._proxy____args[0]
 
     newaction = apps.get_model('actstream', 'action')(
+        issuer=kwargs.pop('issuer', None),
         actor_content_type=ContentType.objects.get_for_model(actor),
         actor_object_id=actor.pk,
         verb=str(verb),
@@ -130,7 +131,7 @@ def action_handler(verb, **kwargs):
             setattr(newaction, '%s_object_id' % opt, obj.pk)
             setattr(newaction, '%s_content_type' % opt,
                     ContentType.objects.get_for_model(obj))
-    if settings.USE_JSONFIELD and len(kwargs):
+    if len(kwargs):
         newaction.data = kwargs
     newaction.save(force_insert=True)
     return newaction
