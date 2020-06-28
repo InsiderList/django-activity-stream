@@ -1,3 +1,22 @@
+Forked from https://github.com/justquick/django-activity-stream to add compatibility with InsiderList.
+
+28.06.20
+
+``admin.py``
+
+- Added ``timestamp`` to ``list_display``
+
+``actions.py``
+
+- Added ``issuer`` to  ``newaction``
+- Removed conditional use of ``settings.USE_JSONFIELD``; ``newaction.data`` should always be ``JSON``
+
+``models.py``
+
+- Added ``data`` JSONField to ``Action`` model
+- Corrected timestamp to use ``auto_now_add``
+
+
 Django Activity Stream
 ======================
 
@@ -55,7 +74,7 @@ This project exists thanks to all the people who contribute!
 
 .. image:: https://opencollective.com/django-activity-stream/contributors.svg?width=890&button=false
 
-Sponsors	
-========	
+Sponsors
+========
 
  `Get supported django-activity-stream with the Tidelift Subscription <https://tidelift.com/subscription/pkg/pypi-django-activity-stream?utm_source=pypi-django-activity-stream&utm_medium=referral&utm_campaign=readme>`_
