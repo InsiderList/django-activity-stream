@@ -19,10 +19,7 @@ DATABASES = {
 if 'postgres' in ENGINE or 'mysql' in ENGINE:
     USER, PASSWORD = 'test', 'test'
     if os.environ.get('TRAVIS', False):
-        if 'mysql' in ENGINE:
-            USER, PASSWORD = 'travis', ''
-        else:
-            USER, PASSWORD = 'postgres', ''
+        USER, PASSWORD = ('travis', '') if 'mysql' in ENGINE else ('postgres', '')
     DATABASES['default'].update(
         NAME='test',
         USER=os.environ.get('DATABASE_USER', USER),
