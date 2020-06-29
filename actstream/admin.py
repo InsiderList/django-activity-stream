@@ -13,7 +13,7 @@ class ActionAdmin(ModelAdmin):
     date_hierarchy = 'timestamp'
     list_display = ('__str__', 'actor', 'verb', 'target', 'action_object', 'timestamp')
     list_editable = ('verb',)
-    list_filter = ('timestamp',)
+    list_filter = ('timestamp', 'verb')
     raw_id_fields = ('actor_content_type', 'target_content_type',
                      'action_object_content_type')
 
