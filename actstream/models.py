@@ -13,7 +13,11 @@ from actstream import settings as actstream_settings
 from actstream.managers import FollowManager
 
 from django.contrib.postgres.fields import JSONField
-from insiderlist.issuers.mixins import IssuerModelMixin
+from django_multitenant.mixins import TenantModelMixin
+from insiderlist.issuers.mixins import IssuerAbstractModel
+
+from insiderlist.utils.models.mixins import CustomAbstractModel
+
 
 class Follow(models.Model):
     """
@@ -44,7 +48,7 @@ class Follow(models.Model):
         return '{} -> {} : {}'.format(self.user, self.follow_object, self.flag)
 
 
-class Action(IssuerModelMixin):
+class Action(IssuerAbstractModel, CustomAbstractModel, TenantModelMixin, models.Model):
     """
     Action model describing the actor acting out a verb (on an optional
     target).
