@@ -64,7 +64,7 @@ class TestAppTests(ActivityBaseTestCase):
         from testapp.models import MyUser
 
         self.assertEqual(self.User, MyUser)
-        self.assertEqual(self.user.get_full_name(), 'test')
+        self.assertEqual(self.user.get_full_name, 'test')
 
     if USE_JSONFIELD:
         def test_jsonfield(self):
