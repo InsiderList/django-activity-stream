@@ -102,7 +102,7 @@ def is_following(user, obj, flag=''):
     return qs.exists()
 
 
-def action_handler(verb, **kwargs):
+def action_handler(verb, commit=True, **kwargs):
     """
     Handler function to create Action instance upon action signal call.
     """
@@ -133,5 +133,6 @@ def action_handler(verb, **kwargs):
                     ContentType.objects.get_for_model(obj))
     if len(kwargs):
         newaction.data = kwargs
-    newaction.save(force_insert=True)
+    if commit:
+        newaction.save(force_insert=True)
     return newaction
